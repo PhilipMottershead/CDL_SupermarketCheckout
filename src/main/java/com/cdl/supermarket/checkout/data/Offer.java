@@ -5,23 +5,23 @@ package com.cdl.supermarket.checkout.data;
  */
 public class Offer implements IOffer {
 
-    private Item item;
+    private IItem item;
 
     private int requiredAmount;
 
     private int totalCost;
 
-    public Offer(Item item, int requiredAmount, int totalCost) {
+    public Offer(IItem item, int requiredAmount, int totalCost) {
         this.item = item;
         this.requiredAmount = requiredAmount;
         this.totalCost = totalCost;
     }
 
-    public Item getItem() {
+    public IItem getItem() {
         return item;
     }
 
-    public void setItem(Item item) {
+    public void setItem(IItem item) {
         this.item = item;
     }
 

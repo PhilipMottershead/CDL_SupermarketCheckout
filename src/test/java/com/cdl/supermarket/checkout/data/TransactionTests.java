@@ -18,7 +18,7 @@ public class TransactionTests {
         @DisplayName("Add item to empty basket")
         public void testAddToBasketWithEmptyBasket() {
             // Given
-            Transaction transaction = new Transaction();
+            ITransaction transaction = new Transaction();
             IItem item = new Item('A', 50);
             IBasket basket = new Basket();
             basket.addToBasket(item);
@@ -72,10 +72,10 @@ public class TransactionTests {
         @DisplayName("Add a different item to a basket")
         public void testAddMultiplesItemToBasketInDifferentOrders() {
             // Given
-            Transaction transaction = new Transaction();
-            Item item = new Item('A', 50);
-            Item item2 = new Item('B', 30);
-            Item item3 = new Item('C', 20);
+            ITransaction transaction = new Transaction();
+            IItem item = new Item('A', 50);
+            IItem item2 = new Item('B', 30);
+            IItem item3 = new Item('C', 20);
             Basket basket = new Basket();
             basket.addToBasket(item);
             basket.addToBasket(item2);

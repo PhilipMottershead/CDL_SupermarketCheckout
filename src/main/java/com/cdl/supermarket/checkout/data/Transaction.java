@@ -8,17 +8,17 @@ import java.util.Map;
  */
 public class Transaction implements ITransaction {
 
-    public Basket getBasket() {
+    public IBasket getBasket() {
         return basket;
     }
 
-    public void setBasket(Basket basket) {
+    public void setBasket(IBasket basket) {
         this.basket = basket;
     }
 
-    private Basket basket;
+    private IBasket basket;
 
-    private Map<Item,Offer> currentOffers;
+    private Map<IItem,IOffer> currentOffers;
 
     private int runningTotal;
 
@@ -35,16 +35,16 @@ public class Transaction implements ITransaction {
      * Method called to update transaction with new item
      * @param item item to add to basket
      */
-    public void addItem(Item item){
+    public void addItem(IItem item){
         basket.addToBasket(item);
         runningTotal = runningTotal + item.getUnitPrice();
     }
 
-    public Map<Item, Offer> getCurrentOffers() {
+    public Map<IItem, IOffer> getCurrentOffers() {
         return currentOffers;
     }
 
-    public void setCurrentOffers(Map<Item, Offer> currentOffers) {
+    public void setCurrentOffers(Map<IItem, IOffer> currentOffers) {
         this.currentOffers = currentOffers;
     }
 
