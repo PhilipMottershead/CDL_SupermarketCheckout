@@ -13,6 +13,16 @@ public class Item {
 
     private int unitPrice;
 
+    public Item(){
+
+    }
+
+    public Item(char SKU, int unitPrice) {
+        this.SKU = SKU;
+        this.unitPrice = unitPrice;
+    }
+
+
     public char getSKU() {
         return SKU;
     }
