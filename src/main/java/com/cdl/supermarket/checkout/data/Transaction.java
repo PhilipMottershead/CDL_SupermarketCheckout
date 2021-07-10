@@ -8,7 +8,15 @@ import java.util.Map;
  */
 public class Transaction {
 
-    private Map<Item,Integer> basket;
+    public Basket getBasket() {
+        return basket;
+    }
+
+    public void setBasket(Basket basket) {
+        this.basket = basket;
+    }
+
+    private Basket basket;
 
     private Map<Item,Offer> currentOffers;
 
@@ -17,35 +25,23 @@ public class Transaction {
     private int finalTotal;
 
     public Transaction() {
-        basket = new HashMap<>();
+        basket = new Basket();
         currentOffers = new HashMap<>();
         runningTotal = 0;
         finalTotal = 0;
     }
 
     /**
-     * Add item to basket
+     * Method called to update transaction with new item
      * @param item item to add to basket
      */
-    public void addToBasket(Item item){
-        if (basket.containsKey(item)) {
-            int currentAmount = basket.get(item);
-            basket.replace(item,++currentAmount);
-        }else {
-            basket.put(item,1);
-        }
+    public void addItem(Item item){
+        basket.addToBasket(item);
         runningTotal = runningTotal + item.getUnitPrice();
-
     }
 
 
-    public Map<Item, Integer> getBasket() {
-        return basket;
-    }
 
-    public void setBasket(Map<Item, Integer> basket) {
-        this.basket = basket;
-    }
 
     public Map<Item, Offer> getCurrentOffers() {
         return currentOffers;

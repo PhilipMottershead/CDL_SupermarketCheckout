@@ -11,6 +11,12 @@ public class Offer {
 
     private int totalCost;
 
+    public Offer(Item item, int requiredAmount, int totalCost) {
+        this.item = item;
+        this.requiredAmount = requiredAmount;
+        this.totalCost = totalCost;
+    }
+
     public Item getItem() {
         return item;
     }
