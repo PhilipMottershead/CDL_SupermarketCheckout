@@ -33,9 +33,9 @@ public class TransactionTests {
         @DisplayName("Add it to basket already containing item")
         public void testAddToBasketWithItemAlreadyInBasket() {
             // Given
-            Transaction transaction = new Transaction();
-            Item item = new Item('A', 50);
-            Basket basket = new Basket();
+            ITransaction transaction = new Transaction();
+            IItem item = new Item('A', 50);
+            IBasket basket = new Basket();
             basket.addToBasket(item);
             basket.addToBasket(item);
 
@@ -52,9 +52,9 @@ public class TransactionTests {
         @DisplayName("Add a different item to a basket")
         public void testAddDifferentItemToBasket() {
             // Given
-            Transaction transaction = new Transaction();
-            Item item = new Item('A', 50);
-            Item item2 = new Item('B', 30);
+            ITransaction transaction = new Transaction();
+            IItem item = new Item('A', 50);
+            IItem item2 = new Item('B', 30);
             Basket basket = new Basket();
             basket.addToBasket(item);
             basket.addToBasket(item2);
