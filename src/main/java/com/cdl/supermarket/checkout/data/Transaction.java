@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Class to store information about transactions.
  */
-public class Transaction {
+public class Transaction implements ITransaction {
 
     public Basket getBasket() {
         return basket;
@@ -39,9 +39,6 @@ public class Transaction {
         basket.addToBasket(item);
         runningTotal = runningTotal + item.getUnitPrice();
     }
-
-
-
 
     public Map<Item, Offer> getCurrentOffers() {
         return currentOffers;

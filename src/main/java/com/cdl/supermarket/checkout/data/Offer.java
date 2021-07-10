@@ -3,7 +3,7 @@ package com.cdl.supermarket.checkout.data;
 /**
  * Class to store information about special offers
  */
-public class Offer {
+public class Offer implements IOffer {
 
     private Item item;
 

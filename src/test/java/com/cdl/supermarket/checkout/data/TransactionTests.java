@@ -1,13 +1,8 @@
 package com.cdl.supermarket.checkout.data;
 
-import com.cdl.supermarket.checkout.Checkout;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,8 +19,8 @@ public class TransactionTests {
         public void testAddToBasketWithEmptyBasket() {
             // Given
             Transaction transaction = new Transaction();
-            Item item = new Item('A', 50);
-            Basket basket = new Basket();
+            IItem item = new Item('A', 50);
+            IBasket basket = new Basket();
             basket.addToBasket(item);
             //When
             transaction.addItem(item);

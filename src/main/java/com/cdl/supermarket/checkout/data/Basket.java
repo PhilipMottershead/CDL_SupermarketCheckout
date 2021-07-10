@@ -7,23 +7,23 @@ import java.util.Objects;
 /**
  * Class to store items
  */
-public class Basket {
+public class Basket implements IBasket {
 
-    private Map<Item,Integer> basket;
+    private Map<IItem,Integer> basket;
 
     public Basket() {
         this.basket = new HashMap<>();
     }
 
-    public Map<Item, Integer> getBasket() {
+    public Map<IItem, Integer> getBasket() {
         return basket;
     }
 
-    public void setBasket(Map<Item, Integer> basket) {
+    public void setBasket(Map<IItem, Integer> basket) {
         this.basket = basket;
     }
 
-    public void addToBasket(Item item){
+    public void addToBasket(IItem item){
         if (basket.containsKey(item)) {
             int currentAmount = basket.get(item);
             basket.replace(item,++currentAmount);

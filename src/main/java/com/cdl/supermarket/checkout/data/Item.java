@@ -5,23 +5,16 @@ import java.util.Objects;
 /**
  * Class to store information about items
  */
-public class Item {
+public class Item implements IItem{
 
     private char SKU;
 
-    private String name;
-
     private int unitPrice;
-
-    public Item(){
-
-    }
 
     public Item(char SKU, int unitPrice) {
         this.SKU = SKU;
         this.unitPrice = unitPrice;
     }
-
 
     public char getSKU() {
         return SKU;
@@ -29,14 +22,6 @@ public class Item {
 
     public void setSKU(char SKU) {
         this.SKU = SKU;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getUnitPrice() {
