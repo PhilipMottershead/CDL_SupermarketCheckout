@@ -4,11 +4,62 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import javax.persistence.Table;
+
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
 public class TransactionTests {
 
+    private final static IItem ITEM_A = new Item('A', 50);
+    private final static IItem ITEM_B = new Item('B', 30);
+    private final static IItem ITEM_C = new Item('C', 20);
+    private final static IItem ITEM_D = new Item('B', 15);
+    private final static IOffer OFFER_A = new Offer(ITEM_A,3,130);
+    private final static IOffer OFFER_B = new Offer(ITEM_B,2,45);
+
+    @Nested
+    @DisplayName("Tests Related to Offers")
+    class Offers{
+        @Test
+        @DisplayName("Offers for other items ignored")
+        public void testOffersForOtherItemsIgnored(){
+            // Given
+            ITransaction transaction = new Transaction();
+            Map<IItem,IOffer> offerMap = Map.of(
+                    ITEM_A,OFFER_A,
+                    ITEM_B,OFFER_B
+            );
+            transaction.setCurrentOffers(offerMap);
+
+            transaction.addItem(ITEM_C);
+            transaction.addItem(ITEM_C);
+            transaction.addItem(ITEM_C);
+
+            assertEquals(60,transaction.getRunningTotal());
+
+        }
+
+        @Test
+        @DisplayName("Offers not applied when not enough items")
+        public void testOBasketDoesNotMeetRequirements(){
+            // Given
+            ITransaction transaction = new Transaction();
+            Map<IItem,IOffer> offerMap = Map.of(
+                    ITEM_A,OFFER_A,
+                    ITEM_B,OFFER_B
+            );
+            transaction.setCurrentOffers(offerMap);
+
+            transaction.addItem(ITEM_A);
+            transaction.addItem(ITEM_A);
+
+            assertEquals(100,transaction.getRunningTotal());
+
+        }
+    }
 
     @Nested
     @DisplayName("Test for addToBasket method")
@@ -19,11 +70,10 @@ public class TransactionTests {
         public void testAddToBasketWithEmptyBasket() {
             // Given
             ITransaction transaction = new Transaction();
-            IItem item = new Item('A', 50);
             IBasket basket = new Basket();
-            basket.addToBasket(item);
+            basket.addToBasket(ITEM_A);
             //When
-            transaction.addItem(item);
+            transaction.addItem(ITEM_A);
             //Then
             assertEquals(basket, transaction.getBasket());
             assertEquals(50,transaction.getRunningTotal());
@@ -34,14 +84,13 @@ public class TransactionTests {
         public void testAddToBasketWithItemAlreadyInBasket() {
             // Given
             ITransaction transaction = new Transaction();
-            IItem item = new Item('A', 50);
             IBasket basket = new Basket();
-            basket.addToBasket(item);
-            basket.addToBasket(item);
+            basket.addToBasket(ITEM_A);
+            basket.addToBasket(ITEM_A);
 
             // When
-            transaction.addItem(item);
-            transaction.addItem(item);
+            transaction.addItem(ITEM_A);
+            transaction.addItem(ITEM_A);
 
             // Then
             assertEquals(basket, transaction.getBasket());
@@ -53,15 +102,13 @@ public class TransactionTests {
         public void testAddDifferentItemToBasket() {
             // Given
             ITransaction transaction = new Transaction();
-            IItem item = new Item('A', 50);
-            IItem item2 = new Item('B', 30);
             Basket basket = new Basket();
-            basket.addToBasket(item);
-            basket.addToBasket(item2);
+            basket.addToBasket(ITEM_A);
+            basket.addToBasket(ITEM_B);
 
             // When
-            transaction.addItem(item);
-            transaction.addItem(item2);
+            transaction.addItem(ITEM_A);
+            transaction.addItem(ITEM_B);
 
             // Then
             assertEquals(basket, transaction.getBasket());
@@ -73,25 +120,23 @@ public class TransactionTests {
         public void testAddMultiplesItemToBasketInDifferentOrders() {
             // Given
             ITransaction transaction = new Transaction();
-            IItem item = new Item('A', 50);
-            IItem item2 = new Item('B', 30);
-            IItem item3 = new Item('C', 20);
+
             Basket basket = new Basket();
-            basket.addToBasket(item);
-            basket.addToBasket(item2);
-            basket.addToBasket(item3);
-            basket.addToBasket(item);
-            basket.addToBasket(item3);
+            basket.addToBasket(ITEM_A);
+            basket.addToBasket(ITEM_B);
+            basket.addToBasket(ITEM_C);
+            basket.addToBasket(ITEM_A);
+            basket.addToBasket(ITEM_C);
 
             transaction.setBasket(basket);
             transaction.setRunningTotal(10);
 
             // When
-            transaction.addItem(item);
-            transaction.addItem(item2);
-            transaction.addItem(item3);
-            transaction.addItem(item);
-            transaction.addItem(item3);
+            transaction.addItem(ITEM_A);
+            transaction.addItem(ITEM_B);
+            transaction.addItem(ITEM_C);
+            transaction.addItem(ITEM_A);
+            transaction.addItem(ITEM_C);
             // Then
             assertEquals(basket, transaction.getBasket());
             assertEquals(180,transaction.getRunningTotal());

@@ -7,6 +7,7 @@ public interface ITransaction {
     void setBasket(IBasket basket);
     void addItem(IItem item);
     Map<IItem, IOffer> getCurrentOffers();
+    void setCurrentOffers(Map<IItem, IOffer> currentOffers);
     void setRunningTotal(int runningTotal);
     int getRunningTotal();
     int getFinalTotal();
