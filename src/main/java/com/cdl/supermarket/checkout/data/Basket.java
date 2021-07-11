@@ -1,8 +1,5 @@
 package com.cdl.supermarket.checkout.data;
 
-import com.cdl.supermarket.checkout.data.interfaces.IBasket;
-import com.cdl.supermarket.checkout.data.interfaces.IItem;
-
 import java.util.*;
 
 /**

@@ -1,4 +1,6 @@
-package com.cdl.supermarket.checkout.data.interfaces;
+package com.cdl.supermarket.checkout.data;
+
+import com.cdl.supermarket.checkout.data.IItem;
 
 public interface IOffer {
     IItem getItem();

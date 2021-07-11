@@ -1,9 +1,5 @@
 package com.cdl.supermarket.checkout.data;
 
-import com.cdl.supermarket.checkout.data.interfaces.IBasket;
-import com.cdl.supermarket.checkout.data.interfaces.IItem;
-import com.cdl.supermarket.checkout.data.interfaces.IOffer;
-import com.cdl.supermarket.checkout.data.interfaces.ITransaction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -31,11 +27,14 @@ public class TransactionTests {
         public void testOBasketMeetRequirementsOfOffer(){
             // Given
             ITransaction transaction = new Transaction();
+            CurrentOffers currentOffers = new CurrentOffers();
+
             Map<IItem,IOffer> offerMap = Map.of(
                     ITEM_A,OFFER_A,
                     ITEM_B,OFFER_B
             );
-            transaction.setCurrentOffers(offerMap);
+            currentOffers.setCurrentOffers(offerMap);
+            transaction.setCurrentOffers(currentOffers);
 
             transaction.addItem(ITEM_A);
             transaction.addItem(ITEM_A);
@@ -50,11 +49,14 @@ public class TransactionTests {
         public void test2(){
             // Given
             ITransaction transaction = new Transaction();
+            CurrentOffers currentOffers = new CurrentOffers();
+
             Map<IItem,IOffer> offerMap = Map.of(
                     ITEM_A,OFFER_A,
                     ITEM_B,OFFER_B
             );
-            transaction.setCurrentOffers(offerMap);
+            currentOffers.setCurrentOffers(offerMap);
+            transaction.setCurrentOffers(currentOffers);
 
             transaction.addItem(ITEM_A);
             transaction.addItem(ITEM_A);
@@ -68,11 +70,14 @@ public class TransactionTests {
         public void test3(){
             // Given
             ITransaction transaction = new Transaction();
+            CurrentOffers currentOffers = new CurrentOffers();
+
             Map<IItem,IOffer> offerMap = Map.of(
                     ITEM_A,OFFER_A,
                     ITEM_B,OFFER_B
             );
-            transaction.setCurrentOffers(offerMap);
+            currentOffers.setCurrentOffers(offerMap);
+            transaction.setCurrentOffers(currentOffers);
 
             transaction.addItem(ITEM_B);
             transaction.addItem(ITEM_B);
@@ -93,11 +98,14 @@ public class TransactionTests {
         public void testOffersForOtherItemsIgnored(){
             // Given
             ITransaction transaction = new Transaction();
+            CurrentOffers currentOffers = new CurrentOffers();
+
             Map<IItem,IOffer> offerMap = Map.of(
                     ITEM_A,OFFER_A,
                     ITEM_B,OFFER_B
             );
-            transaction.setCurrentOffers(offerMap);
+            currentOffers.setCurrentOffers(offerMap);
+            transaction.setCurrentOffers(currentOffers);
 
             transaction.addItem(ITEM_C);
             transaction.addItem(ITEM_C);
@@ -112,11 +120,14 @@ public class TransactionTests {
         public void testOBasketDoesNotMeetRequirements(){
             // Given
             ITransaction transaction = new Transaction();
+            CurrentOffers currentOffers = new CurrentOffers();
+
             Map<IItem,IOffer> offerMap = Map.of(
                     ITEM_A,OFFER_A,
                     ITEM_B,OFFER_B
             );
-            transaction.setCurrentOffers(offerMap);
+            currentOffers.setCurrentOffers(offerMap);
+            transaction.setCurrentOffers(currentOffers);
 
             transaction.addItem(ITEM_A);
             transaction.addItem(ITEM_A);
@@ -129,11 +140,14 @@ public class TransactionTests {
         public void testOBasketMeetRequirementsOfOffer(){
             // Given
             ITransaction transaction = new Transaction();
+            CurrentOffers currentOffers = new CurrentOffers();
+
             Map<IItem,IOffer> offerMap = Map.of(
                     ITEM_A,OFFER_A,
                     ITEM_B,OFFER_B
             );
-            transaction.setCurrentOffers(offerMap);
+            currentOffers.setCurrentOffers(offerMap);
+            transaction.setCurrentOffers(currentOffers);
 
             transaction.addItem(ITEM_A);
             transaction.addItem(ITEM_A);
@@ -147,11 +161,14 @@ public class TransactionTests {
         public void testOBasketMeetRequirementsOfOfferPlus1(){
             // Given
             ITransaction transaction = new Transaction();
+            CurrentOffers currentOffers = new CurrentOffers();
+
             Map<IItem,IOffer> offerMap = Map.of(
                     ITEM_A,OFFER_A,
                     ITEM_B,OFFER_B
             );
-            transaction.setCurrentOffers(offerMap);
+            currentOffers.setCurrentOffers(offerMap);
+            transaction.setCurrentOffers(currentOffers);
 
             transaction.addItem(ITEM_A);
             transaction.addItem(ITEM_A);
@@ -166,11 +183,15 @@ public class TransactionTests {
         public void testOBasketStacksOffer(){
             // Given
             ITransaction transaction = new Transaction();
+
+            CurrentOffers currentOffers = new CurrentOffers();
+
             Map<IItem,IOffer> offerMap = Map.of(
                     ITEM_A,OFFER_A,
                     ITEM_B,OFFER_B
             );
-            transaction.setCurrentOffers(offerMap);
+            currentOffers.setCurrentOffers(offerMap);
+            transaction.setCurrentOffers(currentOffers);
 
             transaction.addItem(ITEM_B);
             transaction.addItem(ITEM_B);
@@ -185,11 +206,14 @@ public class TransactionTests {
         public void testBasketWithMultipleOffers(){
             // Given
             ITransaction transaction = new Transaction();
+            CurrentOffers currentOffers = new CurrentOffers();
+
             Map<IItem,IOffer> offerMap = Map.of(
                     ITEM_A,OFFER_A,
                     ITEM_B,OFFER_B
             );
-            transaction.setCurrentOffers(offerMap);
+            currentOffers.setCurrentOffers(offerMap);
+            transaction.setCurrentOffers(currentOffers);
 
             transaction.addItem(ITEM_A);
             transaction.addItem(ITEM_A);

@@ -1,8 +1,5 @@
 package com.cdl.supermarket.checkout.data;
 
-import com.cdl.supermarket.checkout.data.interfaces.IItem;
-import com.cdl.supermarket.checkout.data.interfaces.IOffer;
-
 /**
  * Class to store information about special offers
  */

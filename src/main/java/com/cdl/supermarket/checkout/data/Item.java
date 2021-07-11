@@ -1,7 +1,5 @@
 package com.cdl.supermarket.checkout.data;
 
-import com.cdl.supermarket.checkout.data.interfaces.IItem;
-
 /**
  * Class to store information about items
  */
