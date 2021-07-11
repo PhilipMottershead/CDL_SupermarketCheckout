@@ -15,6 +15,7 @@ class BasketTest {
     private final static IItem ITEM_B = new Item('B', 30);
     private final static IItem ITEM_C = new Item('C', 20);
     private final static IItem ITEM_D = new Item('B', 15);
+
     private IBasket basket;
 
     @BeforeEach
@@ -28,7 +29,7 @@ class BasketTest {
     }
 
     @Test
-    public void Test2(){
+    public void TestAlreadyExistedItemAreIncremented(){
 
         Map<IItem,Integer> mapBasket = new HashMap<>(Map.of(
                 ITEM_A, 1
@@ -36,15 +37,15 @@ class BasketTest {
         basket.setBasket(mapBasket);
 
         basket.addToBasket(ITEM_A);
-        mapBasket.replace(ITEM_A,2);
-
 
         assertThat(basket.getBasket()).isEqualTo(mapBasket);
+        assertThat(mapBasket.get(ITEM_A)).isEqualTo(2);
         assertThat(basket.getAmountOfItemInBasket(ITEM_A)).isEqualTo(2);
+
     }
 
     @Test
-    public void Test3(){
+    public void TestNewItemIsAdded(){
         Map<IItem,Integer> mapBasket = new HashMap<>(Map.of(
                 ITEM_A, 1
         ));
@@ -54,7 +55,7 @@ class BasketTest {
     }
 
     @Test
-    public void Test4(){
+    public void TestGetItemInBasket(){
         Set<IItem> expectedItems = Set.of(ITEM_A,ITEM_B);
 
         basket.addToBasket(ITEM_A);
