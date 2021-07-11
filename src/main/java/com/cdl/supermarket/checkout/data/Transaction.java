@@ -5,8 +5,6 @@ package com.cdl.supermarket.checkout.data;
  */
 public class Transaction implements ITransaction {
 
-
-
     private IBasket basket;
 
     private CurrentOffers currentOffers;
@@ -46,11 +44,6 @@ public class Transaction implements ITransaction {
         return finalTotal;
     }
 
-
-    public CurrentOffers getCurrentOffers() {
-        return currentOffers;
-    }
-
     public void setCurrentOffers(CurrentOffers currentOffers) {
         this.currentOffers = currentOffers;
     }
@@ -65,10 +58,6 @@ public class Transaction implements ITransaction {
 
     public int getFinalTotal() {
         return finalTotal;
-    }
-
-    public void setFinalTotal(int finalTotal) {
-        this.finalTotal = finalTotal;
     }
 
     public IBasket getBasket() {

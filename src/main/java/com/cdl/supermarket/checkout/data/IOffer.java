@@ -10,5 +10,4 @@ public interface IOffer {
     int getTotalCost();
     void setTotalCost(int totalCost);
     int getDiscount();
-    void setDiscount(int discount);
 }

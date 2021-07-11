@@ -17,15 +17,11 @@ public class Offer implements IOffer {
         this.item = item;
         this.requiredAmount = requiredAmount;
         this.totalCost = totalCost;
-        this.discount = totalCost - (item.getUnitPrice() * requiredAmount);
+        calculateDiscount();
     }
 
     public int getDiscount() {
         return discount;
-    }
-
-    public void setDiscount(int discount) {
-        this.discount = discount;
     }
 
     public int getRequiredAmount() {
@@ -34,14 +30,24 @@ public class Offer implements IOffer {
 
     public void setRequiredAmount(int requiredAmount) {
         this.requiredAmount = requiredAmount;
+        calculateDiscount();
     }
 
     public int getTotalCost() {
         return totalCost;
     }
 
+    private void calculateDiscount(){
+        discount = totalCost - (item.getUnitPrice() * requiredAmount);
+        if(discount > 0){
+            discount = 0;
+        }
+    }
+
+
     public void setTotalCost(int totalCost) {
         this.totalCost = totalCost;
+        calculateDiscount();
     }
 
     public IItem getItem() {
@@ -50,5 +56,6 @@ public class Offer implements IOffer {
 
     public void setItem(IItem item) {
         this.item = item;
+        calculateDiscount();
     }
 }
