@@ -5,19 +5,13 @@ package com.cdl.supermarket.checkout.data;
  */
 public class Offer implements IOffer {
 
+
+
     private IItem item;
 
     private int requiredAmount;
 
     private int totalCost;
-
-    public int getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(int discount) {
-        this.discount = discount;
-    }
 
     private int discount;
 
@@ -28,12 +22,12 @@ public class Offer implements IOffer {
         this.discount = totalCost - (item.getUnitPrice() * requiredAmount);
     }
 
-    public IItem getItem() {
-        return item;
+    public int getDiscount() {
+        return discount;
     }
 
-    public void setItem(IItem item) {
-        this.item = item;
+    public void setDiscount(int discount) {
+        this.discount = discount;
     }
 
     public int getRequiredAmount() {
@@ -50,5 +44,13 @@ public class Offer implements IOffer {
 
     public void setTotalCost(int totalCost) {
         this.totalCost = totalCost;
+    }
+
+    public IItem getItem() {
+        return item;
+    }
+
+    public void setItem(IItem item) {
+        this.item = item;
     }
 }

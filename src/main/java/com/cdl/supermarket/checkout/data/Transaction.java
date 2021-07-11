@@ -1,20 +1,11 @@
 package com.cdl.supermarket.checkout.data;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Class to store information about transactions.
  */
 public class Transaction implements ITransaction {
 
-    public IBasket getBasket() {
-        return basket;
-    }
 
-    public void setBasket(IBasket basket) {
-        this.basket = basket;
-    }
 
     private IBasket basket;
 
@@ -34,18 +25,23 @@ public class Transaction implements ITransaction {
     /**
      * Method called to update transaction with new item
      * @param item item to add to basket
+     * @return Updated basket object
      */
-    public void addItem(IItem item){
+    public IBasket addItem(IItem item){
         basket.addToBasket(item);
         runningTotal = runningTotal + item.getUnitPrice();
-        runningTotal = runningTotal + currentOffers.applyOffer(item,false,basket);
+        runningTotal = runningTotal + currentOffers.calculateOfferDiscount(item,basket);
+        return basket;
     }
 
-
+    /**
+     * Calculates the final total amount
+     * @return int final total
+     */
     public int calculateFinalTotal(){
         for(IItem item: basket.getItemsInBasket()){
             finalTotal = finalTotal + item.getUnitPrice() * basket.getAmountOfItemInBasket(item);
-            finalTotal = finalTotal + currentOffers.applyOffer(item,true,basket);
+            finalTotal = finalTotal + currentOffers.calculateFinalOfferDiscount(item,basket);
         }
         return finalTotal;
     }
@@ -73,5 +69,13 @@ public class Transaction implements ITransaction {
 
     public void setFinalTotal(int finalTotal) {
         this.finalTotal = finalTotal;
+    }
+
+    public IBasket getBasket() {
+        return basket;
+    }
+
+    public void setBasket(IBasket basket) {
+        this.basket = basket;
     }
 }

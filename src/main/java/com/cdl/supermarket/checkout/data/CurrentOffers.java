@@ -22,7 +22,15 @@ public class CurrentOffers {
         return currentOffers.containsKey(item);
     }
 
-    public int applyOffer(IItem item,boolean isFinalCheck,IBasket basket){
+    public int calculateOfferDiscount(IItem item,IBasket basket){
+        return calculateOffer(item,false,basket);
+    }
+
+    public int calculateFinalOfferDiscount(IItem item,IBasket basket){
+        return  calculateOffer(item,true,basket);
+    }
+
+    public int calculateOffer(IItem item,boolean isFinalCheck,IBasket basket){
         if (hasOffer(item)) {
             IOffer offer = currentOffers.get(item);
             int amount = basket.getAmountOfItemInBasket(item);
