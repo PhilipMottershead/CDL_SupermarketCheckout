@@ -1,4 +1,5 @@
 # CDL_SupermarketCheckout
+[![Coverage](.github/badges/jacoco.svg)](https://github.com/PhilipMottershead/CDL_SupermarketCheckout/actions/workflows/gradle.yml)
 ## Task Brief
 
 Implement the code for a checkout system that handles pricing schemes such as “apples cost 50 pence, three apples cost £1.30.”
