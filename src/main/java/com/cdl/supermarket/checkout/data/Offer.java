@@ -33,10 +33,6 @@ public class Offer implements IOffer {
         calculateDiscount();
     }
 
-    public int getTotalCost() {
-        return totalCost;
-    }
-
     private void calculateDiscount(){
         discount = totalCost - (item.getUnitPrice() * requiredAmount);
         if(discount > 0){
@@ -48,10 +44,6 @@ public class Offer implements IOffer {
     public void setTotalCost(int totalCost) {
         this.totalCost = totalCost;
         calculateDiscount();
-    }
-
-    public IItem getItem() {
-        return item;
     }
 
     public void setItem(IItem item) {

@@ -6,12 +6,12 @@ import java.util.Map;
 public class CurrentOffers {
     private Map<IItem, IOffer> currentOffers;
 
-    public CurrentOffers() {
-        currentOffers = new HashMap<>();
+    public CurrentOffers(Map<IItem, IOffer> currentOffers) {
+        this.currentOffers = currentOffers;
     }
 
-    public Map<IItem, IOffer> getCurrentOffers() {
-        return currentOffers;
+    public CurrentOffers() {
+        this.currentOffers = new HashMap<>();
     }
 
     public void setCurrentOffers(Map<IItem, IOffer> currentOffers) {

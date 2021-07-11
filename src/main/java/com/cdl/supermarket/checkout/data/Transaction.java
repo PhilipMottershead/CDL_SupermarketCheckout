@@ -20,6 +20,13 @@ public class Transaction implements ITransaction {
         finalTotal = 0;
     }
 
+    public Transaction(CurrentOffers currentOffers){
+        this.basket = new Basket();
+        this.currentOffers = currentOffers;
+        runningTotal = 0;
+        finalTotal = 0;
+    }
+
     /**
      * Method called to update transaction with new item
      * @param item item to add to basket

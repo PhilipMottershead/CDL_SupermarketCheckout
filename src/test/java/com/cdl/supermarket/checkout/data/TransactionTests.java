@@ -1,5 +1,6 @@
 package com.cdl.supermarket.checkout.data;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 
 public class TransactionTests {
@@ -18,6 +20,20 @@ public class TransactionTests {
     private final static IOffer OFFER_A = new Offer(ITEM_A,3,130);
     private final static IOffer OFFER_B = new Offer(ITEM_B,2,45);
 
+    private Transaction transaction;
+
+
+    @BeforeEach
+    public void setup(){
+        CurrentOffers currentOffers = new CurrentOffers();
+        Map<IItem,IOffer> offerMap = Map.of(
+                ITEM_A,OFFER_A,
+                ITEM_B,OFFER_B
+        );
+        currentOffers.setCurrentOffers(offerMap);
+        transaction = new Transaction(currentOffers);
+    }
+
     @Nested
     @DisplayName("Tests related to final total")
     class FinalTotal{
@@ -25,17 +41,6 @@ public class TransactionTests {
         @Test
         @DisplayName("Basket Meets Requirement of Offer A")
         public void testOBasketMeetRequirementsOfOffer(){
-            // Given
-            ITransaction transaction = new Transaction();
-            CurrentOffers currentOffers = new CurrentOffers();
-
-            Map<IItem,IOffer> offerMap = Map.of(
-                    ITEM_A,OFFER_A,
-                    ITEM_B,OFFER_B
-            );
-            currentOffers.setCurrentOffers(offerMap);
-            transaction.setCurrentOffers(currentOffers);
-
             transaction.addItem(ITEM_A);
             transaction.addItem(ITEM_A);
             transaction.addItem(ITEM_A);
@@ -48,16 +53,6 @@ public class TransactionTests {
         @DisplayName("Basket Meets Requirement of Offer A")
         public void test2(){
             // Given
-            ITransaction transaction = new Transaction();
-            CurrentOffers currentOffers = new CurrentOffers();
-
-            Map<IItem,IOffer> offerMap = Map.of(
-                    ITEM_A,OFFER_A,
-                    ITEM_B,OFFER_B
-            );
-            currentOffers.setCurrentOffers(offerMap);
-            transaction.setCurrentOffers(currentOffers);
-
             transaction.addItem(ITEM_A);
             transaction.addItem(ITEM_A);
 
@@ -69,16 +64,6 @@ public class TransactionTests {
         @DisplayName("Basket Meets Requirement of Offer A")
         public void test3(){
             // Given
-            ITransaction transaction = new Transaction();
-            CurrentOffers currentOffers = new CurrentOffers();
-
-            Map<IItem,IOffer> offerMap = Map.of(
-                    ITEM_A,OFFER_A,
-                    ITEM_B,OFFER_B
-            );
-            currentOffers.setCurrentOffers(offerMap);
-            transaction.setCurrentOffers(currentOffers);
-
             transaction.addItem(ITEM_B);
             transaction.addItem(ITEM_B);
             transaction.addItem(ITEM_B);
@@ -93,20 +78,11 @@ public class TransactionTests {
     @Nested
     @DisplayName("Tests Related to Offers")
     class Offers{
+
         @Test
         @DisplayName("Offers for other items ignored")
         public void testOffersForOtherItemsIgnored(){
             // Given
-            ITransaction transaction = new Transaction();
-            CurrentOffers currentOffers = new CurrentOffers();
-
-            Map<IItem,IOffer> offerMap = Map.of(
-                    ITEM_A,OFFER_A,
-                    ITEM_B,OFFER_B
-            );
-            currentOffers.setCurrentOffers(offerMap);
-            transaction.setCurrentOffers(currentOffers);
-
             transaction.addItem(ITEM_C);
             transaction.addItem(ITEM_C);
             transaction.addItem(ITEM_C);
@@ -119,16 +95,6 @@ public class TransactionTests {
         @DisplayName("Offers not applied when not enough items")
         public void testOBasketDoesNotMeetRequirements(){
             // Given
-            ITransaction transaction = new Transaction();
-            CurrentOffers currentOffers = new CurrentOffers();
-
-            Map<IItem,IOffer> offerMap = Map.of(
-                    ITEM_A,OFFER_A,
-                    ITEM_B,OFFER_B
-            );
-            currentOffers.setCurrentOffers(offerMap);
-            transaction.setCurrentOffers(currentOffers);
-
             transaction.addItem(ITEM_A);
             transaction.addItem(ITEM_A);
 
@@ -139,16 +105,6 @@ public class TransactionTests {
         @DisplayName("Basket Meets Requirement of Offer A")
         public void testOBasketMeetRequirementsOfOffer(){
             // Given
-            ITransaction transaction = new Transaction();
-            CurrentOffers currentOffers = new CurrentOffers();
-
-            Map<IItem,IOffer> offerMap = Map.of(
-                    ITEM_A,OFFER_A,
-                    ITEM_B,OFFER_B
-            );
-            currentOffers.setCurrentOffers(offerMap);
-            transaction.setCurrentOffers(currentOffers);
-
             transaction.addItem(ITEM_A);
             transaction.addItem(ITEM_A);
             transaction.addItem(ITEM_A);
@@ -160,15 +116,6 @@ public class TransactionTests {
         @DisplayName("Basket Meets Requirement of Offer A and has additonal items ")
         public void testOBasketMeetRequirementsOfOfferPlus1(){
             // Given
-            ITransaction transaction = new Transaction();
-            CurrentOffers currentOffers = new CurrentOffers();
-
-            Map<IItem,IOffer> offerMap = Map.of(
-                    ITEM_A,OFFER_A,
-                    ITEM_B,OFFER_B
-            );
-            currentOffers.setCurrentOffers(offerMap);
-            transaction.setCurrentOffers(currentOffers);
 
             transaction.addItem(ITEM_A);
             transaction.addItem(ITEM_A);
@@ -182,16 +129,6 @@ public class TransactionTests {
         @DisplayName("Baskets meet requirement of offer twice")
         public void testOBasketStacksOffer(){
             // Given
-            ITransaction transaction = new Transaction();
-
-            CurrentOffers currentOffers = new CurrentOffers();
-
-            Map<IItem,IOffer> offerMap = Map.of(
-                    ITEM_A,OFFER_A,
-                    ITEM_B,OFFER_B
-            );
-            currentOffers.setCurrentOffers(offerMap);
-            transaction.setCurrentOffers(currentOffers);
 
             transaction.addItem(ITEM_B);
             transaction.addItem(ITEM_B);
@@ -205,15 +142,6 @@ public class TransactionTests {
         @DisplayName("Basket Contains multiple valid offers")
         public void testBasketWithMultipleOffers(){
             // Given
-            ITransaction transaction = new Transaction();
-            CurrentOffers currentOffers = new CurrentOffers();
-
-            Map<IItem,IOffer> offerMap = Map.of(
-                    ITEM_A,OFFER_A,
-                    ITEM_B,OFFER_B
-            );
-            currentOffers.setCurrentOffers(offerMap);
-            transaction.setCurrentOffers(currentOffers);
 
             transaction.addItem(ITEM_A);
             transaction.addItem(ITEM_A);
@@ -235,7 +163,6 @@ public class TransactionTests {
         @DisplayName("Add item to empty basket")
         public void testAddToBasketWithEmptyBasket() {
             // Given
-            ITransaction transaction = new Transaction();
             IBasket basket = new Basket();
             basket.addToBasket(ITEM_A);
             //When
@@ -249,7 +176,6 @@ public class TransactionTests {
         @DisplayName("Add it to basket already containing item")
         public void testAddToBasketWithItemAlreadyInBasket() {
             // Given
-            ITransaction transaction = new Transaction();
             IBasket basket = new Basket();
             basket.addToBasket(ITEM_A);
             basket.addToBasket(ITEM_A);
@@ -267,7 +193,6 @@ public class TransactionTests {
         @DisplayName("Add a different item to a basket")
         public void testAddDifferentItemToBasket() {
             // Given
-            ITransaction transaction = new Transaction();
             Basket basket = new Basket();
             basket.addToBasket(ITEM_A);
             basket.addToBasket(ITEM_B);
@@ -285,7 +210,6 @@ public class TransactionTests {
         @DisplayName("Add a different item to a basket")
         public void testAddMultiplesItemToBasketInDifferentOrders() {
             // Given
-            ITransaction transaction = new Transaction();
 
             Basket basket = new Basket();
             basket.addToBasket(ITEM_A);
@@ -295,7 +219,6 @@ public class TransactionTests {
             basket.addToBasket(ITEM_C);
 
             transaction.setBasket(basket);
-            transaction.setRunningTotal(10);
 
             // When
             transaction.addItem(ITEM_A);
@@ -305,7 +228,7 @@ public class TransactionTests {
             transaction.addItem(ITEM_C);
             // Then
             assertEquals(basket, transaction.getBasket());
-            assertEquals(180,transaction.getRunningTotal());
+            assertEquals(135,transaction.getRunningTotal());
         }
     }
 }

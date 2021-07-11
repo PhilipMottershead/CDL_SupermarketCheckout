@@ -46,9 +46,4 @@ public class Basket implements IBasket {
         Basket basket1 = (Basket) o;
         return Objects.equals(basket, basket1.basket);
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(basket);
-    }
 }
