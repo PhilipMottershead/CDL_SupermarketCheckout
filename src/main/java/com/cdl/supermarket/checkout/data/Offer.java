@@ -5,8 +5,6 @@ package com.cdl.supermarket.checkout.data;
  */
 public class Offer implements IOffer {
 
-
-
     private IItem item;
 
     private int requiredAmount;
