@@ -1,5 +1,8 @@
 package com.cdl.supermarket.checkout.data;
 
+import com.cdl.supermarket.checkout.data.interfaces.IItem;
+import com.cdl.supermarket.checkout.data.interfaces.IOffer;
+
 /**
  * Class to store information about special offers
  */
@@ -11,10 +14,21 @@ public class Offer implements IOffer {
 
     private int totalCost;
 
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+
+    private int discount;
+
     public Offer(IItem item, int requiredAmount, int totalCost) {
         this.item = item;
         this.requiredAmount = requiredAmount;
         this.totalCost = totalCost;
+        this.discount = totalCost - (item.getUnitPrice() * requiredAmount);
     }
 
     public IItem getItem() {

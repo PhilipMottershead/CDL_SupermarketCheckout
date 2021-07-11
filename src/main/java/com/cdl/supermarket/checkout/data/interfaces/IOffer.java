@@ -1,4 +1,4 @@
-package com.cdl.supermarket.checkout.data;
+package com.cdl.supermarket.checkout.data.interfaces;
 
 public interface IOffer {
     IItem getItem();
@@ -7,4 +7,6 @@ public interface IOffer {
     void setRequiredAmount(int requiredAmount);
     int getTotalCost();
     void setTotalCost(int totalCost);
+    int getDiscount();
+    void setDiscount(int discount);
 }

@@ -1,8 +1,9 @@
 package com.cdl.supermarket.checkout.data;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import com.cdl.supermarket.checkout.data.interfaces.IBasket;
+import com.cdl.supermarket.checkout.data.interfaces.IItem;
+
+import java.util.*;
 
 /**
  * Class to store items
@@ -17,6 +18,15 @@ public class Basket implements IBasket {
 
     public Map<IItem, Integer> getBasket() {
         return basket;
+    }
+
+    public int getAmountOfItemInBasket(IItem item){
+        return basket.get(item);
+    }
+
+
+    public Set<IItem> getItemsInBasket(){
+        return basket.keySet();
     }
 
     public void setBasket(Map<IItem, Integer> basket) {

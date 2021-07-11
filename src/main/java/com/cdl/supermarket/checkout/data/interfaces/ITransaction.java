@@ -1,4 +1,4 @@
-package com.cdl.supermarket.checkout.data;
+package com.cdl.supermarket.checkout.data.interfaces;
 
 import java.util.Map;
 
