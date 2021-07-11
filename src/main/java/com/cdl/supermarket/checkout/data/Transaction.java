@@ -59,10 +59,6 @@ public class Transaction implements ITransaction {
         return runningTotal;
     }
 
-    public void setRunningTotal(int runningTotal) {
-        this.runningTotal = runningTotal;
-    }
-
     public int getFinalTotal() {
         return finalTotal;
     }

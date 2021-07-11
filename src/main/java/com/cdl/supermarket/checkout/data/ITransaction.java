@@ -5,7 +5,6 @@ public interface ITransaction {
     void setBasket(IBasket basket);
     IBasket addItem(IItem item);
     void setCurrentOffers(CurrentOffers currentOffers);
-    void setRunningTotal(int runningTotal);
     int getRunningTotal();
     int getFinalTotal();
     int calculateFinalTotal();
