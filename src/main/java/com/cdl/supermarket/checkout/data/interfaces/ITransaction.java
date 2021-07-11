@@ -11,4 +11,5 @@ public interface ITransaction {
     void setRunningTotal(int runningTotal);
     int getRunningTotal();
     int getFinalTotal();
+    int calculateFinalTotal();
 }

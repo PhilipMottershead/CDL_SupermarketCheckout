@@ -44,27 +44,30 @@ public class Transaction implements ITransaction {
     public void addItem(IItem item){
         basket.addToBasket(item);
         runningTotal = runningTotal + item.getUnitPrice();
-        runningTotal = runningTotal + applyOffer(item);
+        runningTotal = runningTotal + applyOffer(item,false);
     }
 
-    public int applyOffer(IItem item){
+    public int applyOffer(IItem item,boolean isFinalCheck){
         boolean hasOffer = currentOffers.containsKey(item);
         if (hasOffer) {
             IOffer offer = currentOffers.get(item);
             int amount = basket.getAmountOfItemInBasket(item);
             int requiredAmount = offer.getRequiredAmount();
             if (amount % requiredAmount == 0) {
-                return offer.getDiscount();
+                if(isFinalCheck){
+                    return offer.getDiscount() * amount / requiredAmount;
+                }else {
+                    return offer.getDiscount();
+                }
             }
         }
         return 0;
     }
 
     public int calculateFinalTotal(){
-        Set<IItem> items = basket.getItemsInBasket();
-        for (IItem item : items) {
-            finalTotal = finalTotal + item.getUnitPrice();
-            finalTotal = finalTotal + applyOffer(item);
+        for(IItem item: basket.getItemsInBasket()){
+            finalTotal = finalTotal + item.getUnitPrice() * basket.getAmountOfItemInBasket(item);
+            finalTotal = finalTotal + applyOffer(item,true);
         }
         return finalTotal;
     }

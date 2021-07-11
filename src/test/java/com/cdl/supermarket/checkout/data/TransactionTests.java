@@ -23,6 +23,69 @@ public class TransactionTests {
     private final static IOffer OFFER_B = new Offer(ITEM_B,2,45);
 
     @Nested
+    @DisplayName("Tests related to final total")
+    class FinalTotal{
+
+        @Test
+        @DisplayName("Basket Meets Requirement of Offer A")
+        public void testOBasketMeetRequirementsOfOffer(){
+            // Given
+            ITransaction transaction = new Transaction();
+            Map<IItem,IOffer> offerMap = Map.of(
+                    ITEM_A,OFFER_A,
+                    ITEM_B,OFFER_B
+            );
+            transaction.setCurrentOffers(offerMap);
+
+            transaction.addItem(ITEM_A);
+            transaction.addItem(ITEM_A);
+            transaction.addItem(ITEM_A);
+
+            transaction.calculateFinalTotal();
+            assertEquals(130,transaction.getFinalTotal());
+        }
+
+        @Test
+        @DisplayName("Basket Meets Requirement of Offer A")
+        public void test2(){
+            // Given
+            ITransaction transaction = new Transaction();
+            Map<IItem,IOffer> offerMap = Map.of(
+                    ITEM_A,OFFER_A,
+                    ITEM_B,OFFER_B
+            );
+            transaction.setCurrentOffers(offerMap);
+
+            transaction.addItem(ITEM_A);
+            transaction.addItem(ITEM_A);
+
+            transaction.calculateFinalTotal();
+            assertEquals(100,transaction.getFinalTotal());
+        }
+
+        @Test
+        @DisplayName("Basket Meets Requirement of Offer A")
+        public void test3(){
+            // Given
+            ITransaction transaction = new Transaction();
+            Map<IItem,IOffer> offerMap = Map.of(
+                    ITEM_A,OFFER_A,
+                    ITEM_B,OFFER_B
+            );
+            transaction.setCurrentOffers(offerMap);
+
+            transaction.addItem(ITEM_B);
+            transaction.addItem(ITEM_B);
+            transaction.addItem(ITEM_B);
+            transaction.addItem(ITEM_B);
+            transaction.calculateFinalTotal();
+
+            assertEquals(90,transaction.getFinalTotal());
+        }
+
+    }
+
+    @Nested
     @DisplayName("Tests Related to Offers")
     class Offers{
         @Test
@@ -59,7 +122,6 @@ public class TransactionTests {
             transaction.addItem(ITEM_A);
 
             assertEquals(100,transaction.getRunningTotal());
-
         }
 
         @Test
